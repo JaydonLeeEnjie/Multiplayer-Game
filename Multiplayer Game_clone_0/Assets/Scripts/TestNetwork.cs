@@ -35,10 +35,10 @@ public class TestNetwork : NetworkIdentity
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            TakeDamage(10);
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    TakeDamage(10);
+        //}
     }
 
             
