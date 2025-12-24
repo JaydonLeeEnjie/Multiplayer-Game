@@ -6,12 +6,20 @@ using UnityEngine.InputSystem.XR;
 public class PlayerController : NetworkIdentity
 {
     private CharacterController charactercontroller;
+    [SerializeField] private NetworkAnimator animator;
     [SerializeField] private float Speed = 3f;
     private InputAction moveAction;
     private InputAction lookAction;
     public Vector2 LookInput => lookAction.ReadValue<Vector2>();
     [SerializeField] private Transform cameraTarget;
     [SerializeField] private float rotationSpeed = 10f;
+
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    private bool isGrounded;
+    private bool wasGrounded;
 
 
     private void Awake()
@@ -30,12 +38,14 @@ public class PlayerController : NetworkIdentity
 
     private void Update()
     {
+        GroundCheck();
         MovePlayer();
     }
 
     private void MovePlayer()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
+        animator.SetBool("Walking", isGrounded && input.sqrMagnitude != 0);
         if (input.sqrMagnitude < 0.01f)
             return;
 
@@ -62,6 +72,13 @@ public class PlayerController : NetworkIdentity
             targetRotation,
             rotationSpeed * Time.deltaTime
         );
+    }
+
+    private void GroundCheck()
+    {
+        wasGrounded = isGrounded;
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
     }
 
 }
