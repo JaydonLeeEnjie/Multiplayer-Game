@@ -165,4 +165,4 @@ public class IPConnectUI : MonoBehaviour
         if (IPCanvas != null) IPCanvas.SetActive(false);
         if (IPCamera != null) IPCamera.SetActive(false);
     }
-}
+}   

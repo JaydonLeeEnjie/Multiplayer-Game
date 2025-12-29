@@ -1,18 +1,21 @@
 using PurrNet;
 using PurrNet.Modules;
 using PurrNet.Transports;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EntryZone : MonoBehaviour
 {
     private NetworkManager networkManager;
+    private bool hasLockedIn = false;
     [SerializeField] private int playerCount;
     [SerializeField] private float timer;
     [SerializeField] private float timerMax;
     [SerializeField] private Image timerImage;
-    public LayerMask playerLayer;
+    private HashSet<NetworkIdentity> playersInside = new();
 
+    [SerializeField] private List<Transform> PlayerSpots;
 
     private void Start()
     {
@@ -21,19 +24,19 @@ public class EntryZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!(((1 << other.gameObject.layer) & playerLayer) != 0))
-            return;
-        if(other.transform.root != other.transform) return;
+        var player = other.GetComponentInParent<NetworkIdentity>();
+        if (player == null || playersInside.Contains(player)) return;
 
+        playersInside.Add(player);
         playerCount++;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!(((1 << other.gameObject.layer) & playerLayer) != 0))
-            return;
-        if (other.transform.root != other.transform) return;
+        var player = other.GetComponentInParent<NetworkIdentity>();
+        if (player == null || !playersInside.Contains(player)) return;
 
+        playersInside.Remove(player);
         playerCount--;
     }
 
@@ -52,11 +55,45 @@ public class EntryZone : MonoBehaviour
         }
 
 
-        if (timer == timerMax)
+        if (!hasLockedIn && timer == timerMax)
         {
-            Debug.Log("ENTER");
+            hasLockedIn = true;
+            AssignPlayersToSpots();
         }
     }
+
+    private void UpdatePlayerSpots(int count)
+    {
+        float spacing = 0.025f;
+        float startZ = -(count - 1) * spacing * 0.5f;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = PlayerSpots[i].localPosition;
+            pos.z = startZ + i * spacing;
+            PlayerSpots[i].localPosition = pos;
+        }
+    }
+
+    private void AssignPlayersToSpots()
+    {
+        int count = Mathf.Min(playersInside.Count, PlayerSpots.Count);
+
+        // Ensure spots are positioned correctly first
+        UpdatePlayerSpots(count);
+
+        int index = 0;
+        foreach (var playerIdentity in playersInside)
+        {
+            var controller = playerIdentity.GetComponent<PlayerController>();
+            if (controller == null) continue;
+
+            controller.MoveCombatPlayerToSpot(PlayerSpots[index]);
+            index++;
+        }
+    }
+
+
 
 
 
