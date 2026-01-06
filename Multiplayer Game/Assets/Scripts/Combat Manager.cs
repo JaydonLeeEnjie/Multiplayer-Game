@@ -1,16 +1,22 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public List<CombatEntity> Entities;
+    public List<CombatEntity> TurnOrder;
 
-    // Update is called once per frame
-    void Update()
+    public void CalculateTurnOrder()
     {
-        
+        TurnOrder.Clear();
+        TurnOrder = new List<CombatEntity>(Entities);
+
+        TurnOrder.Sort((a, b) =>
+        {
+            float speedA = a?.stats?.CurrentSpeed ?? 0f;
+            float speedB = b?.stats?.CurrentSpeed ?? 0f;
+            return speedB.CompareTo(speedA);
+        });
     }
 }

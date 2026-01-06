@@ -17,6 +17,8 @@ public class EntryZone : MonoBehaviour
 
     [SerializeField] private List<Transform> PlayerSpots;
 
+    public CombatManager combatManager;
+
     private void Start()
     {
         networkManager = FindObjectOfType<NetworkManager>();
@@ -89,8 +91,10 @@ public class EntryZone : MonoBehaviour
             if (controller == null) continue;
 
             controller.MoveCombatPlayerToSpot(PlayerSpots[index]);
+            combatManager.Entities.Add(controller.CombatPlayer);
             index++;
         }
+        combatManager.CalculateTurnOrder();
     }
 
 

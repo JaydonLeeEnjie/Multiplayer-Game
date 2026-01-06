@@ -8,7 +8,7 @@ public class PlayerController : NetworkIdentity
     private CharacterController charactercontroller;
     [SerializeField] private NetworkAnimator animator;
     [SerializeField] private float Speed = 3f;
-    [SerializeField] private GameObject CombatPlayer;
+    public CombatPlayer CombatPlayer;
     private InputAction moveAction;
     private InputAction lookAction;
     public Vector2 LookInput => lookAction.ReadValue<Vector2>();
@@ -88,7 +88,7 @@ public class PlayerController : NetworkIdentity
 
         CombatPlayer.transform.position = spot.position;
         CombatPlayer.transform.rotation = spot.rotation;
-        CombatPlayer.SetActive(true);
+        CombatPlayer.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 

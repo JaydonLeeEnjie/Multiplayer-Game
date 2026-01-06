@@ -2341,6 +2341,8 @@ GameObject:
   - component: {fileID: 6423640623287217920}
   - component: {fileID: 8962189264535008051}
   - component: {fileID: 5794147864459513652}
+  - component: {fileID: 4119720004014569598}
+  - component: {fileID: 8229025236853356100}
   m_Layer: 6
   m_Name: Combat Player
   m_TagString: Untagged
@@ -2428,6 +2430,36 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4119720004014569598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699366524079583378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bc358ffe2530a44a229ec71cf51288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stats
+  isEnemy: 0
+  CurrentHealth: 100
+  CurrentMaxHealth: 100
+  CurrentAttack: 10
+  CurrentSpeed: 10
+--- !u!114 &8229025236853356100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699366524079583378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6bda521317df3408a0590879dd8386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatPlayer
+  stats: {fileID: 4119720004014569598}
 --- !u!1 &5827913443495181742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,7 +3730,7 @@ PrefabInstance:
     - target: {fileID: 3999241005039443177, guid: 2c0045af93d9c36448f329c3e791da5c, type: 3}
       propertyPath: CombatPlayer
       value: 
-      objectReference: {fileID: 5699366524079583378}
+      objectReference: {fileID: 8229025236853356100}
     - target: {fileID: 5121618800590125012, guid: 2c0045af93d9c36448f329c3e791da5c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.0290658
