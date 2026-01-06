@@ -8,6 +8,7 @@ public class ThirdPersonCamera : NetworkIdentity
     public PlayerController player;
     [SerializeField] private Transform cameraTarget;
     [SerializeField] CinemachineCamera cinemachineCamera;
+    [SerializeField] CinemachineCamera combatCinemachineCamera;
 
     [Header("Look Settings")]
     [SerializeField] private float sensitivity = 120f;
@@ -20,6 +21,7 @@ public class ThirdPersonCamera : NetworkIdentity
     private void Awake()
     {
         cinemachineCamera.gameObject.SetActive(false);
+        combatCinemachineCamera.gameObject.SetActive(false);
     }
 
     protected override void OnSpawned()
@@ -29,6 +31,7 @@ public class ThirdPersonCamera : NetworkIdentity
         if (!isOwner) return;
 
         cinemachineCamera.gameObject.SetActive(true);
+        combatCinemachineCamera.gameObject.SetActive(true);
 
         Vector3 euler = cameraTarget.localEulerAngles;
         yaw = euler.y;

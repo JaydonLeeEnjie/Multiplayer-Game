@@ -1174,7 +1174,8 @@ Transform:
   m_LocalPosition: {x: -0.05, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 639023103}
   m_Father: {fileID: 532407152}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &410087039
@@ -1585,6 +1586,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!4 &639023103 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
+  m_PrefabInstance: {fileID: 1068361452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,35 +1921,35 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 335303133}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.75
+      value: 0.017499994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.75
+      value: 0.0175
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.75
+      value: 0.017499994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.999703
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.3636003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1951,7 +1957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1963,7 +1969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1975,7 +1981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_Name
-      value: Paladin J Nordstrom
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5978a895372b46845b7e9fe4bf19c3cb, type: 3}
       propertyPath: m_Controller
@@ -2909,7 +2915,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4180,4 +4186,3 @@ SceneRoots:
   - {fileID: 69088226}
   - {fileID: 268915119}
   - {fileID: 532407152}
-  - {fileID: 1068361452}

@@ -89,6 +89,7 @@ public class PlayerController : NetworkIdentity
         CombatPlayer.transform.position = spot.position;
         CombatPlayer.transform.rotation = spot.rotation;
         CombatPlayer.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 
