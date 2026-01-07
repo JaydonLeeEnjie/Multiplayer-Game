@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EntryZone
   playerCount: 0
   timer: 0
-  timerMax: 10
+  timerMax: 5
   timerImage: {fileID: 1976344117}
   PlayerSpots:
   - {fileID: 320141302}

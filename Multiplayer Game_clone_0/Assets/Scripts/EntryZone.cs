@@ -89,8 +89,7 @@ public class EntryZone : MonoBehaviour
         {
             var controller = playerIdentity.GetComponent<PlayerController>();
             if (controller == null) continue;
-
-            controller.MoveCombatPlayerToSpot(PlayerSpots[index]);
+            controller.PrepareEnterCombat(PlayerSpots[index]);
             combatManager.Entities.Add(controller.CombatPlayer);
             index++;
         }

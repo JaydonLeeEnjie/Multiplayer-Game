@@ -6,11 +6,16 @@ using UnityEngine.InputSystem.XR;
 public class PlayerController : NetworkIdentity
 {
     private CharacterController charactercontroller;
-    [SerializeField] private NetworkAnimator animator;
+    [SerializeField] private NetworkAnimator PlayerAnimator;
+    public NetworkAnimator animator;
     [SerializeField] private float Speed = 3f;
     public CombatPlayer CombatPlayer;
     private InputAction moveAction;
     private InputAction lookAction;
+
+    public ThirdPersonCamera thirdPersonCamera;
+    private Transform pendingCombatSpot;
+
     public Vector2 LookInput => lookAction.ReadValue<Vector2>();
     [SerializeField] private Transform cameraTarget;
     [SerializeField] private float rotationSpeed = 10f;
@@ -46,7 +51,7 @@ public class PlayerController : NetworkIdentity
     private void MovePlayer()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        animator.SetBool("Walking", isGrounded && input.sqrMagnitude != 0);
+        PlayerAnimator.SetBool("Walking", isGrounded && input.sqrMagnitude != 0);
         if (input.sqrMagnitude < 0.01f)
             return;
 
@@ -89,8 +94,40 @@ public class PlayerController : NetworkIdentity
         CombatPlayer.transform.position = spot.position;
         CombatPlayer.transform.rotation = spot.rotation;
         CombatPlayer.gameObject.SetActive(true);
+        thirdPersonCamera.combatCinemachineCamera.Prioritize();
         gameObject.SetActive(false);
     }
+
+    public void OnEnterCombatAnimationEvent()
+    {
+        if (pendingCombatSpot == null)
+        {
+            Debug.LogWarning("Combat spot missing");
+            return;
+        }
+
+        MoveCombatPlayerToSpot(pendingCombatSpot);
+        pendingCombatSpot = null;
+    }
+
+
+    public void MovePlayerBack()
+    {
+        if (CombatPlayer == null) return;
+
+        CombatPlayer.gameObject.SetActive(false);
+        thirdPersonCamera.cinemachineCamera.Prioritize();
+        gameObject.SetActive(true);
+    }
+
+    public void PrepareEnterCombat(Transform spot)
+    {
+        pendingCombatSpot = spot;
+
+        // Trigger animation (network-safe)
+        animator.Play("CameraTransition");
+    }
+
 
 
 
