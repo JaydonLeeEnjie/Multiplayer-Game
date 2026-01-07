@@ -16,7 +16,18 @@ MonoBehaviour:
   - From: Third Person Aim Camera
     To: Third Person Aim Combat Camera
     Blend:
-      Style: 6
+      Style: 0
+      Time: 2
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - From: Third Person Aim Combat Camera
+    To: Third Person Aim Camera
+    Blend:
+      Style: 0
       Time: 2
       CustomCurve:
         serializedVersion: 2
