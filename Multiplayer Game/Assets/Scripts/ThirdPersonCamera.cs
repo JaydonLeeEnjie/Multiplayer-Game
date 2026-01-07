@@ -7,8 +7,9 @@ public class ThirdPersonCamera : NetworkIdentity
 {
     public PlayerController player;
     [SerializeField] private Transform cameraTarget;
-    [SerializeField] CinemachineCamera cinemachineCamera;
-    [SerializeField] CinemachineCamera combatCinemachineCamera;
+    public CinemachineCamera cinemachineCamera;
+    public CinemachineCamera combatCinemachineCamera;
+
 
     [Header("Look Settings")]
     [SerializeField] private float sensitivity = 120f;
